@@ -23,6 +23,17 @@
 
 }
 
+.pagelinks {
+    display: inline;
+    text-decoration: none;
+
+}
+
+.button {
+    display: inline;
+
+}
+
 .logout-button {
   background: none;
   border: none;
@@ -32,6 +43,8 @@
   font-size: 1em;
   font-family: serif;*/
 }
+
 .logout-button:focus {
   outline: none;
 }
+
