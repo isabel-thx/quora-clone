@@ -1,38 +1,55 @@
+<body class="container other"> 
 <div class="navbar">
 
-	<ul class="pagelinks">
-		<li class="button" id="home_page"><a href="/users/<%= current_user.id %>" style="color: black">HOME</a></li>
-		<li class="button" id="profile_page"><a href="/users/<%= current_user.id %>/profile" style="color: black">MY PROFILE</a></li>
-    <li class="button" id="my_questions"><a href="/questions" style="color: black">MY QUESTIONS</a></li>
-  </ul>
+	<div style="float: left;">
 
-  <form id="logout" method="post" action="/logout" >
-		<button type=submit value="Log out" class="logout-button">
-			Log out
+		<ul class="pagelinks">
+			<a class="link" href="/users/<%= current_user.id %>"><img src="/img/quora1.png" width="50px" height="50px"></a>
+			<a class="link" href="/users/<%= current_user.id %>/profile" style="color: black">MY PROFILE</a>
+    	<a class="link" href="/questions" style="color: black">MY QUESTIONS</a>
+  	</ul>
+
+	</div>
+
+ <!-- <form method="post" action="/logout"> -->
+	<form class="logout-button" style="display:inline;" method="post" action="/logout"> 
+		<button type=submit value="Log out" href="/logout">
+				Log out
 		</button>
 	</form>
+<!-- </form> -->
 
 </div>
 
-ALL MY ANSWERS
+<div class ="body">
 
-<div class="my-answers">
-	<ol>
-	<% @answer.each do |a| %>
+	<br><br><br>
+
+<h2 style="font-weight: bold;">ALL MY ANSWERS</h2>
+
+	<div class="my-answers">
+		<ol>
+		<% @answer.each do |a| %>
 		<li>
-		<p>On <%= a.created_at %>, you answered to <%= a.question.user.first_name %> :</p>
-		<p><%= a.content %></p>
-		<a href="/questions/<%= a.question.id %>">Show question</a>
+			<p>On <%= a.created_at %>, you answered to <%= a.question.user.first_name %> :</p>
+			<p style="font-weight: bold;"><%= a.content %></p>
+			
+			<form id="edit_answer" style="display:inline;" method="get" action="/answers/<%= a.id %>/edit">
+				<input id="edit_button" type="submit" value="Edit Answer">
+			</form>
 
+			<form id="delete_answer" style="display:inline;" method="get" action="/answers/<%= a.id %>/delete">
+				<input id="delete_button" type="submit" value="Delete Answer">
+			</form>
+			<br><br>
+			
+			<a class="line-link" href="/questions/<%= a.question.id %>">Show question</a>
 
-		<form id="edit_answer" method="get" action="/answers/<%= a.id %>/edit">
-			<input id="edit_button" type="submit" value="Edit Answer">
-		</form>
+			<br><br>
+		</li>
+		<% end %>
+		</ol>
+	</div>
 
-		<form id="delete_answer" method="get" action="/answers/<%= a.id %>/delete">
-			<input id="delete_button" type="submit" value="Delete Answer">
-		</form>
-	</li>
-	<% end %>
-	</ol>
 </div>
+<body>

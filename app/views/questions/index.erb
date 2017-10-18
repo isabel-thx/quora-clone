@@ -1,41 +1,61 @@
+<body class="container other"> 
 <div class="navbar">
 
+	<div style="float: left;">
+
 	<ul class="pagelinks">
-		<li class="button" id="home_page"><a href="/users/<%= current_user.id %>" style="color: black">HOME</a></li>
-		<li class="button" id="profile_page"><a href="/users/<%= current_user.id %>/profile" style="color: black">MY PROFILE</a></li>
-    <li class="button" id="my_answers"><a href="/answers" style="color: black">MY ANSWERS</a></li>
+		<a class="link" href="/users/<%= current_user.id %>"><img src="/img/quora1.png" width="50px" height="50px"></a>
+		<a class="link" href="/users/<%= current_user.id %>/profile" style="color: black">MY PROFILE</a>
+    <a class="link" href="/answers" style="color: black">MY ANSWERS</a>
   </ul>
 
-  <form id="logout" method="post" action="/logout" >
-		<button type=submit value="Log out" class="logout-button">
-			Log out
+	</div>
+
+
+
+	<form class="logout-button" style="display:inline;" method="post" action="/logout"> 
+		<button type=submit value="Log out" href="/logout">
+				Log out
 		</button>
 	</form>
 
+
+
 </div>
 
+<div class ="body">
 
-ALL MY QUESTIONS
+	<br><br><br>
 
-<div class="my-questions">
-	<ol>
-	<% @question.each do |q| %>
-	<li>
-		<p>On <%= q.created_at %>, you asked:</p>
-		<p><%= q.description %></p>
-		<a href="/questions/<%= q.id %>">Show answers</a>
+<h2 style="font-weight: bold;">ALL MY QUESTIONS</h2>
+
+	<div class="my-questions">
+		<ol>
+		<% @question.each do |q| %>
+		<li>
+			<p>On <%= q.created_at %>, you asked:</p>
+			<p style="font-weight: bold;"><%= q.description %></p>
+			
 
 		<!-- <button><a href="/questions/<%#= q.id %>/edit" id="edit_button">edit question</a></button> -->
 
-		<form id="edit_question" method="get" action="/questions/<%= q.id %>/edit">
-			<input id="edit_button" type="submit" value="Edit Question">
-		</form>
+			<form id="edit_question" style="display:inline;" method="get" action="/questions/<%= q.id %>/edit">
+				<input id="edit_button" type="submit" value="Edit Question">
+			</form>
 
-		<form id="delete_question" method="get" action="/questions/<%= q.id %>/delete">
-			<input id="delete_button" type="submit" value="Delete Question">
-		</form>
-	</li>
-	<% end %>
-	</ol>
+			<form id="delete_question" style="display:inline;" method="get" action="/questions/<%= q.id %>/delete">
+				<input id="delete_button" type="submit" value="Delete Question">
+			</form>
+
+			<br><br>
+
+			<a class="line-link" href="/questions/<%= q.id %>">Show answers</a>
+
+			<br><br>
+		</li>
+		<% end %>
+		</ol>
+	</div>
+
 </div>
-
+<body>

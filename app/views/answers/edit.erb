@@ -1,5 +1,12 @@
-<form method="post" action="/answers/<%= @answer.id %>">
-	Edit your answer:
-	<textarea name="answer[content]"><%= @answer.content %></textarea>
-	<input type="submit" value="Edit Answer">
-</form>
+<body class="container other"> 
+<div class ="body">
+
+	<form method="post" action="/answers/<%= @answer.id %>">
+		<p style="font-weight: bold; font-size: 20px;">Edit your answer:</p>
+		<textarea name="answer[content]"><%= @answer.content %></textarea>
+		<input type="submit" value="Edit Answer">
+	</form>
+
+</div>
+<body>
+
