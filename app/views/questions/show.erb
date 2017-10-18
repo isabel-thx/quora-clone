@@ -1,21 +1,30 @@
+<body class="container other"> 
 <div class="navbar">
 
-	<ul class="pagelinks">
-		<li class="button" id="home_page"><a href="/users/<%= current_user.id %>" style="color: black">HOME</a></li>
-		<li class="button" id="profile_page"><a href="/users/<%= current_user.id %>/profile" style="color: black">MY PROFILE</a></li>
-    <li class="button" id="my_questions"><a href="/questions" style="color: black">MY QUESTIONS</a></li>
-    <li class="button" id="my_answers"><a href="/answers" style="color: black">MY ANSWERS</a></li>
-  </ul>
+	<div style="float: left;">
 
-  <form id="logout" method="post" action="/logout" >
-		<button type=submit value="Log out" class="logout-button">
-			Log out
+		<ul class="pagelinks">
+			<a class="link" href="/users/<%= current_user.id %>"><img src="/img/quora1.png" width="50px" height="50px"></a>
+			<a class="link" href="/users/<%= current_user.id %>/profile" style="color: black">MY PROFILE</a>
+    	<a class="link" href="/questions" style="color: black">MY QUESTIONS</a>
+    	<a class="link" href="/answers" style="color: black">MY ANSWERS</a>
+  	</ul>
+
+	</div>
+
+ <!-- <form method="post" action="/logout"> -->
+	<form class="logout-button" style="display:inline;" method="post" action="/logout"> 
+		<button type=submit value="Log out" href="/logout">
+				Log out
 		</button>
 	</form>
+<!-- </form> -->
 
 </div>
 
 <!-- SHOW THE QUESTION TOGETHER WITH ITS ANSWERS -->
+<div class ="body">
+	<br><br><br><br>
 
 <% if @question.user != nil %>
 	<%= "On " + @question.created_at.to_s + ","%>
@@ -25,27 +34,26 @@
 <div class="posted-question">
 	<%= @posted_question = Question.find(params[:id]) %>
 <!-- 	<p><%#= User.find(@posted_question.user_id) %></p> -->
-	<p><%= @posted_question.description%></p>
+	<p style="font-weight: bold"><%= @posted_question.description%></p>
 
-	
-	<% @questions.each do |q| %>
 
-		<form id='question_upvote_<%= q.id %>' style='display:inline;' method='post' action='/questions/<%= q.id %>/up'>
-			<input id='upvote_<%= q.id%>' type='submit' value='Upvote <%= QuestionVote.where(question_id: q.id, points: 1).count %>'>				
-		</form>
-		
-		<form id='question_downvote_<%= q.id %>' style='display:inline;' method='post' action='/questions/<%= q.id %>/down'>
-			<input id='downvote_<%= q.id %>' type='submit' value='Downvote <%= QuestionVote.where(question_id: q.id, points: -1).count %>'>
-		</form>
+
+	<form id='question_upvote_<%= @posted_question.id %>' style='display:inline;' method='post' action='/questions/<%= @posted_question.id %>/up'>
+		<input id='upvote_<%= @posted_question.id %>' style="border: 1px solid #408000; background: #4080007F;" type='submit' value='Upvote <%= QuestionVote.where(question_id: @posted_question.id, points: 1).count %>'>				
+	</form>
 	
-	<% end %>
+	<form id='question_downvote_<%= @posted_question.id %>' style='display:inline;' method='post' action='/questions/<%= @posted_question.id %>/down'>
+		<input id='downvote_<%= @posted_question.id %>' style="border: 1px solid #800040; background: #8000407F;" type='submit' value='Downvote <%= QuestionVote.where(question_id: @posted_question.id, points: -1).count %>'>
+	</form>
+
+
 
 </div>
 
 <p class="answer-submit">
 	<form method="post" action="/questions/<%= @question.id %>/answers/new">
 		<textarea name="answer[content]" placeholder="Answer the question"></textarea>
-		<input id="answer_button" type="submit" value="Answer!">
+		<input type="submit" value="Answer!">
 	</form>
 </p>
 
@@ -57,13 +65,15 @@
 
 
 <!-- SHOW ALL ANSWERS FOR THE QUESTION -->
-Answers:
+<p style="font-weight: bold; font-size: 20px;"> Answers: </p>
 
 <div class="posted-answer">
 
+	<% if @question.answers != nil %>
+
 	<% @question.answers.each do |a| %>
 		<p>On <%= a.created_at %>, <%= a.user.first_name %> answered:</p>
-		<p><%= a.content%></p>
+		<p style="font-weight: bold"><%= a.content%></p>
 
 		<form id='answer_upvote_<%= a.id %>' style='display:inline;' method='post' action='/answers/<%= a.id %>/up'>
 			<input id='upvote_<%= a.id%>' type='submit' value='Upvote <%= AnswerVote.where(answer_id: a.id, points: 1).count %>'>
@@ -72,6 +82,12 @@ Answers:
 		<form id='answer_downvote_<%= a.id %>' style='display:inline;' method='post' action='/answers/<%= a.id %>/down'>
 			<input id='downvote_<%= a.id%>' type='submit' value='Downvote <%= AnswerVote.where(answer_id: a.id, points: -1).count %>'>
 		</form>
+		<br><br>
+	<% end %>
+
 	<% end %>
 	
 </div> 
+
+</div>
+<body>

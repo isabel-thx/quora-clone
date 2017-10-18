@@ -1,29 +1,39 @@
 <!-- <h1 class="title">Quora</h1> -->
+<!-- <div class="background">
+  <img width="cover" height="500px">
+</div> -->
+<body class="container welcome"> 
+<br>
 
 <a href="/"><img class="title" src="img/quoralogo.png" width="200px" height="100px"></a>
 
+<br>
+
 <p class="description">It's time to get some answers.</p>
 
+<br>
+
 <div class="enter">
-	<div style="float: left;">
+	<div> <!--style="float: left;"-->
 		<form id="signup" method="post" action="/users" >
-			<input type=text placeholder="First Name" name="user[first_name]"><br>
-			<input type=text placeholder="Last Name" name="user[last_name]"><br>
-		    <input type=text placeholder="Email" name="user[email]"><br>
-		    <input type=password placeholder="Password" name="user[password]"></br>
-		    <input type=submit value="Sign up">
+			<input id="enter" type=text placeholder="First Name" name="user[first_name]" style="color: black"><br>
+			<input id="enter" type=text placeholder="Last Name" name="user[last_name]"><br>
+		    <input id="enter" type=text placeholder="Email" name="user[email]"><br>
+		    <input id="enter" type=password placeholder="Password" name="user[password]"></br>
+		    <input id="enter-submit" type=submit value="Sign up">
 		</form>
 	</div>
 <!-- 	create separate divs to enable one to float beside the other -->
 	<div>
 		<form id="login" method="post" action="/login" >
-		    <input type=text placeholder="Email" name="email"><br>
-		    <input type=password placeholder="Password" name="password"></br>
-		    <input type=submit value="Log in">
+		    <input id="enter" type=text placeholder="Email" name="email"><br>
+		    <input id="enter" type=password placeholder="Password" name="password"></br>
+		    <input id="enter-submit" type=submit value="Log in">
 		</form>
 	</div>
 </div>
 
+<body>
 
 
 <!-- params ={user: {first_name: "xxx", last_name}}
