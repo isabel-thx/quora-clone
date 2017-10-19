@@ -39,11 +39,11 @@
 
 
 	<form id='question_upvote_<%= @posted_question.id %>' style='display:inline;' method='post' action='/questions/<%= @posted_question.id %>/up'>
-		<input id='upvote_<%= @posted_question.id %>' style="border: 1px solid #408000; background: #4080007F;" type='submit' value='Upvote <%= QuestionVote.where(question_id: @posted_question.id, points: 1).count %>'>				
+		<input id='upvote_<%= @posted_question.id %>' style="border: 0.5px #7af4bf; background: #5b9e77 /*4080007F*/;" type='submit' value='Upvote <%= QuestionVote.where(question_id: @posted_question.id, points: 1).count %>'>				
 	</form>
 	
 	<form id='question_downvote_<%= @posted_question.id %>' style='display:inline;' method='post' action='/questions/<%= @posted_question.id %>/down'>
-		<input id='downvote_<%= @posted_question.id %>' style="border: 1px solid #800040; background: #8000407F;" type='submit' value='Downvote <%= QuestionVote.where(question_id: @posted_question.id, points: -1).count %>'>
+		<input id='downvote_<%= @posted_question.id %>' style="border: 0.5px #ed9090; background: #9e5353/* #8000407F*/;" type='submit' value='Downvote <%= QuestionVote.where(question_id: @posted_question.id, points: -1).count %>'>
 	</form>
 
 
@@ -76,11 +76,11 @@
 		<p style="font-weight: bold"><%= a.content%></p>
 
 		<form id='answer_upvote_<%= a.id %>' style='display:inline;' method='post' action='/answers/<%= a.id %>/up'>
-			<input id='upvote_<%= a.id%>' style="border: 1px solid #408000; background: #4080007F;" type='submit' value='Upvote <%= AnswerVote.where(answer_id: a.id, points: 1).count %>'>
+			<input id='upvote_<%= a.id%>' style="border: 0.5px #7af4bf; background: #5b9e77 /*4080007F*/;"  type='submit' value='Upvote <%= AnswerVote.where(answer_id: a.id, points: 1).count %>'>
 		</form>
 		
 		<form id='answer_downvote_<%= a.id %>' style='display:inline;' method='post' action='/answers/<%= a.id %>/down'>
-			<input id='downvote_<%= a.id%>' style="border: 1px solid #800040; background: #8000407F;" type='submit' value='Downvote <%= AnswerVote.where(answer_id: a.id, points: -1).count %>'>
+			<input id='downvote_<%= a.id%>' style="border: 0.5px #ed9090; background: #9e5353/* #8000407F*/;" type='submit' value='Downvote <%= AnswerVote.where(answer_id: a.id, points: -1).count %>'>
 		</form>
 		<br><br>
 	<% end %>
