@@ -1,6 +1,6 @@
 body.welcome {
     opacity: 0.9;
-    background: url(background.jpg) no-repeat center center;
+    background: url(background.jpg) no-repeat center center fixed;
 
 }
 
