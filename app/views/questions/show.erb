@@ -76,11 +76,11 @@
 		<p style="font-weight: bold"><%= a.content%></p>
 
 		<form id='answer_upvote_<%= a.id %>' style='display:inline;' method='post' action='/answers/<%= a.id %>/up'>
-			<input id='upvote_<%= a.id%>' type='submit' value='Upvote <%= AnswerVote.where(answer_id: a.id, points: 1).count %>'>
+			<input id='upvote_<%= a.id%>' style="border: 1px solid #408000; background: #4080007F;" type='submit' value='Upvote <%= AnswerVote.where(answer_id: a.id, points: 1).count %>'>
 		</form>
 		
 		<form id='answer_downvote_<%= a.id %>' style='display:inline;' method='post' action='/answers/<%= a.id %>/down'>
-			<input id='downvote_<%= a.id%>' type='submit' value='Downvote <%= AnswerVote.where(answer_id: a.id, points: -1).count %>'>
+			<input id='downvote_<%= a.id%>' style="border: 1px solid #800040; background: #8000407F;" type='submit' value='Downvote <%= AnswerVote.where(answer_id: a.id, points: -1).count %>'>
 		</form>
 		<br><br>
 	<% end %>
